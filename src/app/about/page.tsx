@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home | Kitton",
+  title: "About",
 };
 
-export default function Home() {
+export default function About() {
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1>Hello About</h1>
     </div>
   );
 }
