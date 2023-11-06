@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import ProjectCard from "@/components/ProjectCard";
-import Container from "@/components/Container";
+import ProjectCard from "@/components/projects/ProjectCard";
+import Container from "@/components/common/Container";
 import { getProjectList } from "@/services/project";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default async function Projects() {
         more of my projects, please visit my Github profile{" "}
         <span>(github.com/Kittonn)</span>.
       </p>
-      <div>
+      <div className="space-y-4">
         {projects?.length ? (
           projects.map((project, index) => (
             <ProjectCard project={project} key={index} />
