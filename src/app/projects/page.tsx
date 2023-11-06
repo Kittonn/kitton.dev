@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 export default function Projects() {
   return (
     <Container>
-      <h1 className="text-center font-semibold text-5xl">Coming Soon!</h1>
+      <h1 className="text-center font-semibold text-5xl">Projects</h1>
+      
     </Container>
   );
 }
