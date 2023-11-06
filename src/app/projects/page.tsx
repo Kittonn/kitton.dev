@@ -19,10 +19,13 @@ export default async function Projects() {
         <span>(github.com/Kittonn)</span>.
       </p>
       <div>
-        {projects &&
+        {projects?.length ? (
           projects.map((project, index) => (
             <ProjectCard project={project} key={index} />
-          ))}
+          ))
+        ) : (
+          <p>No Projects Available.</p>
+        )}
       </div>
     </Container>
   );
