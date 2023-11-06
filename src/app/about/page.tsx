@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Container from "@/components/Container";
 
 export const metadata: Metadata = {
   title: "About",
@@ -6,8 +7,8 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <div>
-      <h1>Hello About</h1>
-    </div>
+    <Container>
+      <h1 className="text-center font-semibold text-5xl">About me</h1>
+    </Container>
   );
 }

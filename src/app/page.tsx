@@ -1,13 +1,14 @@
+import Container from "@/components/Container";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home | Kitton",
+  title: "Home - Kitton",
 };
 
 export default function Home() {
   return (
-    <div>
+    <Container>
       <h1>Hello World</h1>
-    </div>
+    </Container>
   );
 }
