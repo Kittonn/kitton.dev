@@ -25,7 +25,7 @@ export const educations: Education[] = [
     schoolName: "Mary Vitthaya Kabinburi School",
     degree: "High School",
     fieldOfStudy: "Science and Mathematics",
-    startDate: "2008-05-14",
+    startDate: "2019-05-14",
     endDate: "2022-03-31",
     laboratory: [],
     location: "Prachinburi, Thailand",
