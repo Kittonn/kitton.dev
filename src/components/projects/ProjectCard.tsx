@@ -1,6 +1,6 @@
 import Link from "next/link";
-import GithubIcon from "../icons/GithubIcon";
-import LanguageIcon from "../icons/LanguageIcon";
+import GithubIcon from "@/components/icons/GithubIcon";
+import LanguageIcon from "@/components/icons/LanguageIcon";
 import { cn } from "@/utils/classNames";
 import { Project } from "@/types/project";
 
