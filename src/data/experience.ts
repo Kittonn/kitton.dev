@@ -6,7 +6,7 @@ export const experiences: Experience[] = [
     company: "Chulalongkorn University",
     url: "https://www.thaieconomap.com/",
     startDate: "2023-09-17",
-    endDate: "current",
+    endDate: "",
     description:
       "Developed and maintained a web application for Thai Economy Map using Next.js as frontend and Nest.js as backend.",
   },

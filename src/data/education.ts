@@ -6,6 +6,6 @@ export const educations: Education[] = [
     degree: "Bachelor of Engineering",
     fieldOfStudy: "Computer Engineering",
     startDate: "2022-08-01",
-    endDate: "current",
+    endDate: "",
   },
 ];
