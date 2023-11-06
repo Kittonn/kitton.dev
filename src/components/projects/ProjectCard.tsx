@@ -2,16 +2,13 @@ import Link from "next/link";
 import GithubIcon from "../icons/GithubIcon";
 import LanguageIcon from "../icons/LanguageIcon";
 import { cn } from "@/utils/classNames";
+import { Project } from "@/types/project";
 
 type Props = {
-  name: string;
-  description: string;
-  language: string;
-  html_url: string;
-  homepage: string;
+  project: Project
 };
 
-export default function ProjectCard({ project }: { project: Props }) {
+export default function ProjectCard({ project }: Props) {
   const { name, description, language, html_url, homepage } = project;
   return (
     <div className="border-[1px] rounded border-gray-800 p-5 space-y-3">
