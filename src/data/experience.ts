@@ -9,6 +9,7 @@ export const experiences: Experience[] = [
     endDate: "",
     description:
       "Developed and maintained a web application for Thai Economy Map using Next.js as frontend and Nest.js as backend.",
+    location: "Bangkok, Thailand",
   },
   {
     position: "Frontend Developer (Internship)",
@@ -18,5 +19,6 @@ export const experiences: Experience[] = [
     endDate: "2023-07-27",
     description:
       "Developed a data storytelling website about retirement age in Thailand using Nuxt.js, Scss and Firebase.",
+    location: "Bangkok, Thailand",
   },
 ];

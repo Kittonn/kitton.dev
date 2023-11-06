@@ -1,6 +1,6 @@
 export const formatRangeDate = (startDate: string, endDate: string) => {
   const start = formatDate(startDate);
-  const end = endDate ? formatDate(endDate) : "currently";
+  const end = endDate ? formatDate(endDate) : "current";
   return `${start} - ${end}`;
 };
 
