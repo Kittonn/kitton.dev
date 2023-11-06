@@ -2,7 +2,7 @@ import { Project } from "@/types/project";
 
 export const getProjectList = async () => {
   try {
-    const response = await fetch("https://api.github.com/users/Kittonn/repos", {
+    const response = await fetch(`${process.env.GITHUB_API}/users/Kittonn/repos`, {
       cache: "force-cache",
     });
     const data = await response.json();
