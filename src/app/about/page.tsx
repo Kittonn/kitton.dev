@@ -3,6 +3,7 @@ import Container from "@/components/common/Container";
 import ExperienceSection from "@/components/about/ExperienceSection";
 import EducationSection from "@/components/about/EducationSection";
 import ProfileSection from "@/components/about/ProfileSection";
+import SkillSection from "@/components/about/SkillSection";
 
 export const metadata: Metadata = {
   title: "About",
@@ -16,6 +17,7 @@ export default function About() {
         <ProfileSection />
         <ExperienceSection />
         <EducationSection />
+        <SkillSection />
       </div>
     </Container>
   );
