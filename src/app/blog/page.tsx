@@ -7,8 +7,10 @@ export const metadata: Metadata = {
 
 export default function Blog() {
   return (
-    <Container>
+    <div className="py-24">
+      <Container>
       <h1 className="text-center font-semibold text-5xl">Coming Soon!</h1>
     </Container>
+    </div>
   );
 }
