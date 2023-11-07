@@ -9,7 +9,7 @@ export default function SkillCategory({ skill }: Props) {
   return (
     <div>
       <h3 className="text-xl font-semibold">{skill.category}</h3>
-      <div className="flex items-center gap-8 my-6">
+      <div className="flex items-center gap-8 my-6 flex-wrap">
         {skill.items.map((item, index) => (
           <Image
             key={index}

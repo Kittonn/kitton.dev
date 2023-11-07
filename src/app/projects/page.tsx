@@ -17,7 +17,11 @@ export default async function Projects() {
         These are most of the projects I have worked on, including personal
         projects, practice projects, and university projects. if you want to see
         more of my projects, please visit my Github profile{" "}
-        <Link href="https://github.com/Kittonn" target="_blank">
+        <Link
+          className="hover:underline hover:text-white transition-all ease-in-out duration-300"
+          href="https://github.com/Kittonn"
+          target="_blank"
+        >
           (github.com/Kittonn)
         </Link>
         .

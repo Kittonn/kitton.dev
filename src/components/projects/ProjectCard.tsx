@@ -10,7 +10,7 @@ type Props = {
 export default function ProjectCard({ project }: Props) {
   const { name, description, language, html_url, homepage } = project;
   return (
-    <div className="border-[1px] rounded border-neutral-700 p-5 space-y-3">
+    <div className="border-[1px] rounded border-neutral-700 hover:border-neutral-900 p-5 space-y-3 transition duration-300 ease-in-out">
       <h2 className="text-xl font-semibold">{name}</h2>
       <p className="text-sm">{description}</p>
       <div className="flex justify-between items-center">
