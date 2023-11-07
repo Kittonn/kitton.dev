@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <Container>
+    <div className="py-24">
+      <Container>
       <h1 className="text-center font-semibold text-5xl mb-12">About me</h1>
       <div className="space-y-16">
         <ProfileSection />
@@ -20,5 +21,6 @@ export default function About() {
         <SkillSection />
       </div>
     </Container>
+    </div>
   );
 }
