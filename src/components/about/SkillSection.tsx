@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { data } from "@/data";
+import SkillCategory from "./SkillCategory";
 
 export default function SkillSection() {
   const { skills } = data;
@@ -14,20 +14,7 @@ export default function SkillSection() {
       </p>
       <div>
         {skills.map((skill, index) => (
-          <div key={index}>
-            <h3 className="text-xl font-semibold">{skill.category}</h3>
-            <div className="flex items-center gap-8 my-6">
-              {skill.items.map((item, idx) => (
-                <Image
-                  key={idx}
-                  src={item.logo}
-                  alt={`${item.name}'s logo`}
-                  width={42}
-                  height={42}
-                />
-              ))}
-            </div>
-          </div>
+          <SkillCategory skill={skill} key={index} />
         ))}
       </div>
     </div>
