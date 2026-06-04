@@ -2,7 +2,6 @@
 title: "Tailwind CSS v4: What's New and How to Migrate"
 description: "Everything you need to know about Tailwind CSS v4 — the new CSS-first config, performance improvements, and migration guide from v3."
 publishedDate: 2026-05-15
-updatedDate: 2026-06-01
 tags: ["tailwind", "css", "frontend", "migration"]
 coverImage: "/images/tailwind-v4-cover.jpg"
 draft: false
