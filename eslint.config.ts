@@ -1,26 +1,27 @@
-import js from "@eslint/js";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 import eslintPluginAstro from "eslint-plugin-astro";
-import { defineConfig } from "eslint/config";
 
-export default defineConfig([
+export default [
   {
     ignores: ["dist/**", ".astro/**", "node_modules/**"],
   },
+  ...tseslint.configs.recommended,
+  ...eslintPluginAstro.configs.recommended,
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
-    plugins: { js },
-    extends: ["js/recommended"],
+    files: ["**/*.astro"],
+    languageOptions: {
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+      },
+    },
+  },
+  {
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },
     },
-  },
-  tseslint.configs.recommended,
-  ...eslintPluginAstro.configs.recommended,
-  {
     rules: {
       "no-console": "error",
     },
   },
-]);
+];
