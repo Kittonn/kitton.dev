@@ -1,0 +1,27 @@
+---
+import { render } from "astro:content";
+import { getSortedBlogs } from "../../utils/content";
+import BlogNavigation from "../../components/BlogNavigation.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = async () => {
+  const blogs = await getSortedBlogs();
+  return blogs.map((blog, index) => ({
+    params: { slug: blog.id },
+    props: {
+      blog,
+      previousBlog: index > 0 ? blogs[index - 1] : null,
+      nextBlog: index < blogs.length - 1 ? blogs[index + 1] : null,
+    },
+  }));
+};
+
+const { blog, previousBlog, nextBlog } = Astro.props;
+
+const { Content } = await render(blog);
+---
+
+<BaseLayout title={blog.data.title}>
+  <Content />
+  <BlogNavigation previousBlog={previousBlog} nextBlog={nextBlog} />
+</BaseLayout>

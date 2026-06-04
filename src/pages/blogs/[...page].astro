@@ -1,0 +1,34 @@
+---
+import { getSortedBlogs } from "../../utils/content";
+import Pagination from "../../components/Pagination.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const blogs = await getSortedBlogs();
+
+  return paginate(blogs, { pageSize: 5 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title="Blogs">
+  <h1>Page {page.currentPage}</h1>
+  <ul>
+    {
+      page.data.map(data => (
+        <li>
+          <a href={`/blogs/${data.id}`}>{data.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <Pagination
+    currentPage={page.currentPage}
+    lastPage={page.lastPage}
+    prevUrl={page.url.prev}
+    nextUrl={page.url.next}
+  />
+</BaseLayout>

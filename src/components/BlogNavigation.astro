@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  previousBlog: CollectionEntry<"blogs"> | null;
+  nextBlog: CollectionEntry<"blogs"> | null;
+};
+
+const { previousBlog, nextBlog } = Astro.props;
+---
+
+{
+  previousBlog && (
+    <a
+      href={`/blogs/${previousBlog.id}`}
+      aria-label={`Previous blog: ${previousBlog.data.title}`}
+    >
+      Previous
+      {previousBlog.data.title}
+    </a>
+  )
+}
+{
+  nextBlog && (
+    <a
+      href={`/blogs/${nextBlog.id}`}
+      aria-label={`Next blog: ${nextBlog.data.title}`}
+    >
+      Next
+      {nextBlog.data.title}
+    </a>
+  )
+}

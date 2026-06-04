@@ -1,0 +1,104 @@
+---
+title: "Using Components in MDX"
+description: "Explore how MDX lets you embed interactive React/Astro components directly inside Markdown content."
+publishedDate: 2026-02-15
+updatedDate: 2026-04-01
+tags: ["mdx", "components", "astro", "react"]
+draft: false
+---
+
+import { Code } from "astro:components";
+
+export const greeting = "Hello from an MDX export!";
+
+# Using Components in MDX
+
+MDX is Markdown with superpowers — you can import and use components just like in a `.jsx` or `.astro` file.
+
+## Inline Expressions
+
+Today's greeting: **{greeting}**
+
+Current year: **{new Date().getFullYear()}**
+
+## Computed Values
+
+export const features = ["Zero JS by default", "Content Collections", "Multi-framework support", "View Transitions"];
+
+Here are Astro's key features:
+
+<ul>
+  {features.map((f) => (
+    <li key={f}>✅ {f}</li>
+  ))}
+</ul>
+
+---
+
+## Astro's Built-in `<Code>` Component
+
+The `<Code>` component provides syntax highlighting at build time via Shiki:
+
+<Code
+  code={`const add = (a: number, b: number): number => a + b;\nconsole.log(add(2, 3)); // 5`}
+  lang="ts"
+  theme="github-dark"
+/>
+
+---
+
+## Mixing Markdown and JSX
+
+You can freely switch between Markdown and JSX blocks:
+
+> This is a **Markdown blockquote**.
+
+<div style="border: 2px solid #7c3aed; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+  <strong>This is a JSX div</strong> with inline styles — useful for custom callouts or highlight boxes.
+</div>
+
+Back to normal Markdown paragraph text.
+
+---
+
+## Conditional Rendering
+
+export const isNewFeature = true;
+
+{isNewFeature && (
+  <div style="background: #d1fae5; padding: 0.75rem; border-radius: 0.5rem;">
+    🆕 <strong>New Feature!</strong> This block only renders when <code>isNewFeature</code> is true.
+  </div>
+)}
+
+---
+
+## Fragment Shorthand
+
+<>
+  <p>This paragraph is inside a Fragment.</p>
+  <p>So is this one — no extra wrapper div needed.</p>
+</>
+
+---
+
+## Why MDX?
+
+1. Write content in familiar Markdown
+2. Drop in interactive components when needed
+3. Full access to the component ecosystem
+4. Type-safe with TypeScript
+
+> **Rule of thumb:** Keep most content as plain `.md` for simplicity. Reach for `.mdx` only when you need actual component logic.
+
+---
+
+## Summary
+
+| Feature | `.md` | `.mdx` |
+| ------- | :---: | :----: |
+| Markdown syntax | ✅ | ✅ |
+| Frontmatter | ✅ | ✅ |
+| Import components | ❌ | ✅ |
+| JSX expressions | ❌ | ✅ |
+| Export variables | ❌ | ✅ |
