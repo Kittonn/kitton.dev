@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import { config } from "./src/config";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,8 +15,8 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: "Inter",
-      cssVariable: "--font-inter",
+      name: "Geist",
+      cssVariable: "--font-geist",
     },
   ],
 
@@ -23,7 +24,11 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap(),
+    icon(),
+  ],
 
   markdown: {},
 });

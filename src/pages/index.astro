@@ -1,7 +1,106 @@
 ---
+import { Picture } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import avatar from "../assets/avatar.jpg";
+import { getSortedBlogs } from "../utils/content";
+import { Icon } from "astro-icon/components";
+import { config } from "../config";
+
+const recentBlogs = (await getSortedBlogs()).slice(0, 5);
 ---
 
 <BaseLayout title="Home">
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <section class="flex flex-col items-start gap-10 sm:flex-row">
+    <Picture
+      src={avatar}
+      formats={["avif", "webp"]}
+      alt="Kittipod Lambangchang"
+      width={400}
+      height={500}
+      loading="eager"
+      fetchpriority="high"
+      class="aspect-3/4 w-64 shrink-0 rounded-md object-cover"
+    />
+
+    <div class="flex flex-1 flex-col gap-4">
+      <div class="space-y-1">
+        <h1 class="text-2xl font-semibold text-neutral-900">
+          Kittipod Lambangchang
+        </h1>
+        <p class="text-sm text-neutral-400">
+          aka Kitton <span class="mx-1.5">·</span> Software Engineer
+        </p>
+      </div>
+
+      <div class="space-y-3 text-sm leading-relaxed text-neutral-500">
+        <p>
+          I'm a Software Engineer working in fintech, passionate about building
+          scalable systems, designing reliable software, and exploring new
+          technologies.
+        </p>
+        <p>
+          This blog is where I share things I learn, build, and discover along
+          the way.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        {
+          config.contacts.map(contact => (
+            <a
+              href={contact.href}
+              class="text-neutral-400 transition-colors hover:text-neutral-900"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={contact.label}
+            >
+              <Icon name={contact.icon} class="size-5" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-14">
+    <h2 class="mb-6 text-xs tracking-widest text-neutral-400 uppercase">
+      Recent Blogs
+    </h2>
+
+    {
+      recentBlogs.length === 0 ? (
+        <p class="text-sm text-neutral-400">No blogs yet. Check back soon.</p>
+      ) : (
+        <>
+          <ul class="space-y-5">
+            {recentBlogs.map(blog => (
+              <li>
+                <a
+                  href={`/blogs/${blog.id}`}
+                  class="group flex items-baseline justify-between gap-4"
+                >
+                  <span class="text-sm text-neutral-700 transition-colors group-hover:text-neutral-400">
+                    {blog.data.title}
+                  </span>
+                  <span class="shrink-0 text-xs text-neutral-400">
+                    {blog.data.publishedDate.toLocaleDateString("en-GB", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/blogs"
+            class="mt-8 inline-block text-xs tracking-widest text-neutral-400 uppercase transition-colors hover:text-neutral-900"
+          >
+            All blogs →
+          </a>
+        </>
+      )
+    }
+  </section>
 </BaseLayout>

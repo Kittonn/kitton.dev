@@ -1,0 +1,31 @@
+---
+import { Icon } from "astro-icon/components";
+import { config } from "../config";
+---
+
+<footer class="mx-auto w-full max-w-3xl px-6 py-8">
+  <div
+    class="flex items-center justify-between border-t border-neutral-200 pt-6"
+  >
+    <p class="text-xs text-neutral-400">
+      &copy; {new Date().getFullYear()}
+      {config.site.author}
+    </p>
+
+    <div class="flex items-center gap-3">
+      {
+        config.contacts.map(contact => (
+          <a
+            href={contact.href}
+            class="text-neutral-400 transition-colors hover:text-neutral-900"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={contact.label}
+          >
+            <Icon name={contact.icon} class="size-4" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</footer>

@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import { getSortedBlogs, getUniqueTags } from "../../../utils/content";
 import Pagination from "../../../components/Pagination.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const blogs = await getSortedBlogs();
@@ -9,31 +10,47 @@ export const getStaticPaths = (async ({ paginate }) => {
 
   return tags.flatMap(tag => {
     const taggedBlogs = blogs.filter(blog => blog.data.tags?.includes(tag));
-
-    return paginate(taggedBlogs, {
-      pageSize: 1,
-      params: { tag },
-    });
+    return paginate(taggedBlogs, { pageSize: 5, params: { tag } });
   });
 }) satisfies GetStaticPaths;
 
 const { tag, page } = Astro.props;
 ---
 
-<h1>Tag: {tag}</h1>
-<ul>
-  {
-    page.data.map(data => (
-      <li>
-        <a href={`/blogs/${data.id}`}>{data.data.title}</a>
-      </li>
-    ))
-  }
-</ul>
+<BaseLayout title={`#${tag}`}>
+  <div class="mb-10 space-y-1">
+    <h1 class="text-xs tracking-widest text-neutral-400 uppercase">Tag</h1>
+    <p class="text-sm text-neutral-900">#{tag}</p>
+  </div>
 
-<Pagination
-  currentPage={page.currentPage}
-  lastPage={page.lastPage}
-  prevUrl={page.url.prev}
-  nextUrl={page.url.next}
-/>
+  <ul class="space-y-8">
+    {
+      page.data.map(blog => (
+        <li>
+          <a href={`/blogs/${blog.id}`} class="group block space-y-1">
+            <span class="text-sm text-neutral-900 transition-colors group-hover:text-neutral-500">
+              {blog.data.title}
+            </span>
+            <span class="block text-xs text-neutral-400">
+              {blog.data.publishedDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+            <span class="block text-xs leading-relaxed text-neutral-400">
+              {blog.data.description}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <Pagination
+    currentPage={page.currentPage}
+    lastPage={page.lastPage}
+    prevUrl={page.url.prev}
+    nextUrl={page.url.next}
+  />
+</BaseLayout>

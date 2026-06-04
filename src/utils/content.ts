@@ -1,21 +1,22 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
-const effectiveTime = (post: CollectionEntry<"blogs">) =>
-  new Date(post.data.updatedDate ?? post.data.publishedDate).getTime();
-
 const getVisibleBlogs = () =>
   getCollection("blogs", ({ data }: CollectionEntry<"blogs">) => {
     if (data.draft) return false;
 
     return (
       import.meta.env.DEV ||
-      Date.now() >= effectiveTime({ data } as CollectionEntry<"blogs">)
+      Date.now() >= new Date(data.publishedDate).getTime()
     );
   });
 
 export const getSortedBlogs = async () => {
   const blogs = await getVisibleBlogs();
-  return blogs.sort((a, b) => effectiveTime(b) - effectiveTime(a));
+  return blogs.sort(
+    (a, b) =>
+      new Date(b.data.publishedDate).getTime() -
+      new Date(a.data.publishedDate).getTime()
+  );
 };
 
 export const getUniqueTags = async () => {

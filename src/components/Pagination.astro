@@ -9,20 +9,34 @@ type Props = {
 const { currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
 ---
 
-<nav aria-label="Pagination">
+<nav aria-label="Pagination" class="mt-12 flex items-center justify-between">
   {
     prevUrl ? (
-      <a href={prevUrl}>Previous</a>
+      <a
+        href={prevUrl}
+        class="text-xs tracking-widest text-neutral-400 uppercase transition-colors hover:text-neutral-900"
+      >
+        ← Prev
+      </a>
     ) : (
-      <span aria-disabled="true">Previous</span>
+      <span class="text-xs tracking-widest text-neutral-200 uppercase">
+        ← Prev
+      </span>
     )
   }
-  <span aria-current="page">{currentPage} / {lastPage}</span>
+  <span class="text-xs text-neutral-300">{currentPage} / {lastPage}</span>
   {
     nextUrl ? (
-      <a href={nextUrl}>Next</a>
+      <a
+        href={nextUrl}
+        class="text-xs tracking-widest text-neutral-400 uppercase transition-colors hover:text-neutral-900"
+      >
+        Next →
+      </a>
     ) : (
-      <span aria-disabled="true">Next</span>
+      <span class="text-xs tracking-widest text-neutral-200 uppercase">
+        Next →
+      </span>
     )
   }
 </nav>

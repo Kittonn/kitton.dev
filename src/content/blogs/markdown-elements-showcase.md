@@ -2,7 +2,6 @@
 title: "Markdown Elements Showcase — Everything in One Post"
 description: "A complete reference post covering every markdown element: headings, lists, tables, code blocks, blockquotes, images, and more."
 publishedDate: 2026-01-10
-updatedDate: 2026-05-20
 tags: ["markdown", "reference", "showcase"]
 coverImage: "/images/markdown-cover.jpg"
 ogImage: "/images/markdown-og.jpg"

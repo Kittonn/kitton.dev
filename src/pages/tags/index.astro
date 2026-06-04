@@ -1,16 +1,24 @@
 ---
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getUniqueTags } from "../../utils/content";
 
 const tags = await getUniqueTags();
 ---
 
-<h1>tags</h1>
-<ul>
-  {
-    tags.map((tag: string) => (
-      <li>
-        <a href={`/tags/${tag}`}>{tag}</a>
-      </li>
-    ))
-  }
-</ul>
+<BaseLayout title="Tags">
+  <h1 class="mb-6 text-xs tracking-widest text-neutral-400 uppercase">Tags</h1>
+  <ul class="flex flex-wrap gap-3">
+    {
+      tags.map((tag: string) => (
+        <li>
+          <a
+            href={`/tags/${tag}`}
+            class="text-xs text-neutral-400 transition-colors hover:text-neutral-900"
+          >
+            #{tag}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
