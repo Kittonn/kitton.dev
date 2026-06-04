@@ -1,0 +1,39 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getSortedBlogs, getUniqueTags } from "../../../utils/content";
+import Pagination from "../../../components/Pagination.astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const blogs = await getSortedBlogs();
+  const tags = await getUniqueTags();
+
+  return tags.flatMap(tag => {
+    const taggedBlogs = blogs.filter(blog => blog.data.tags?.includes(tag));
+
+    return paginate(taggedBlogs, {
+      pageSize: 1,
+      params: { tag },
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { tag, page } = Astro.props;
+---
+
+<h1>Tag: {tag}</h1>
+<ul>
+  {
+    page.data.map(data => (
+      <li>
+        <a href={`/blogs/${data.id}`}>{data.data.title}</a>
+      </li>
+    ))
+  }
+</ul>
+
+<Pagination
+  currentPage={page.currentPage}
+  lastPage={page.lastPage}
+  prevUrl={page.url.prev}
+  nextUrl={page.url.next}
+/>

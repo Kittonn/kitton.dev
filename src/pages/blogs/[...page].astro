@@ -1,45 +1,34 @@
 ---
 import { getSortedBlogs } from "../../utils/content";
+import Pagination from "../../components/Pagination.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const blogs = await getSortedBlogs();
+
   return paginate(blogs, { pageSize: 5 });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 ---
 
-<h1>Page {page.currentPage}</h1>
-<ul>
-  {
-    page.data.map(data => (
-      <li>
-        <a href={`/blogs/${data.id}`}>{data.data.title}</a>
-      </li>
-    ))
-  }
-</ul>
-<div>
-  {
-    page.currentPage > 1 ? (
-      <a
-        href={
-          page.currentPage === 2 ? `/blogs` : `/blogs/${page.currentPage - 1}`
-        }
-      >
-        Previous
-      </a>
-    ) : (
-      <span aria-disabled="true">Previous</span>
-    )
-  }
-  {page.currentPage}/{page.lastPage}
-  {
-    page.currentPage < page.lastPage ? (
-      <a href={`/blogs/${page.currentPage + 1}`}>Next</a>
-    ) : (
-      <span aria-disabled="true">Next</span>
-    )
-  }
-</div>
+<BaseLayout title="Blogs">
+  <h1>Page {page.currentPage}</h1>
+  <ul>
+    {
+      page.data.map(data => (
+        <li>
+          <a href={`/blogs/${data.id}`}>{data.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <Pagination
+    currentPage={page.currentPage}
+    lastPage={page.lastPage}
+    prevUrl={page.url.prev}
+    nextUrl={page.url.next}
+  />
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import "../styles/global.css";
+import { Font } from "astro:assets";
+
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+
+    <Font cssVariable="--font-inter" preload />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
