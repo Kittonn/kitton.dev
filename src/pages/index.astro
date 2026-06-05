@@ -24,7 +24,7 @@ const recentBlogs = (await getSortedBlogs()).slice(0, 5);
 
     <div class="flex flex-1 flex-col gap-4">
       <div class="space-y-1">
-        <h1 class="text-2xl font-semibold text-neutral-900">
+        <h1 class="text-2xl font-semibold text-neutral-900 sm:text-3xl">
           Kittipod Lambangchang
         </h1>
         <p class="text-sm text-neutral-400">
@@ -32,7 +32,7 @@ const recentBlogs = (await getSortedBlogs()).slice(0, 5);
         </p>
       </div>
 
-      <div class="space-y-3 text-sm leading-relaxed text-neutral-500">
+      <div class="space-y-3 leading-relaxed text-neutral-500">
         <p>
           I'm a Software Engineer working in fintech, passionate about building
           scalable systems, designing reliable software, and exploring new
@@ -79,7 +79,7 @@ const recentBlogs = (await getSortedBlogs()).slice(0, 5);
                   href={`/blogs/${blog.id}`}
                   class="group flex items-baseline justify-between gap-4"
                 >
-                  <span class="text-sm text-neutral-700 transition-colors group-hover:text-neutral-400">
+                  <span class="text-neutral-700 transition-colors group-hover:text-neutral-400">
                     {blog.data.title}
                   </span>
                   <span class="shrink-0 text-xs text-neutral-400">

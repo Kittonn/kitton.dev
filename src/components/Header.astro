@@ -11,11 +11,11 @@ function isActive(href: string) {
 ---
 
 <header class="mx-auto w-full max-w-3xl px-6 py-6">
-  <nav class="flex items-center gap-6">
+  <nav class="flex items-center gap-4 sm:gap-6">
     <a
       href="/"
       class:list={[
-        "text-xs tracking-widest uppercase transition-colors",
+        "text-sm tracking-widest uppercase transition-colors",
         isActive("/")
           ? "text-neutral-900"
           : "text-neutral-400 hover:text-neutral-900",
@@ -26,14 +26,14 @@ function isActive(href: string) {
 
     <span class="text-neutral-200 select-none">/</span>
 
-    <ul class="flex items-center gap-6">
+    <ul class="flex items-center gap-4 sm:gap-6">
       {
         config.navigation.slice(1).map(({ href, name }) => (
           <li>
             <a
               href={href}
               class:list={[
-                "text-xs tracking-widest uppercase transition-colors",
+                "text-sm tracking-widest uppercase transition-colors",
                 isActive(href)
                   ? "text-neutral-900"
                   : "text-neutral-400 hover:text-neutral-900",
