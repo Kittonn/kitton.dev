@@ -4,11 +4,11 @@ import issieChula from "../assets/companies/issie_chula.jpg";
 export const experiences = [
   {
     company: "Krungsri Nimble",
-    role: "Developer · Full-time",
+    role: "Developer",
     startDate: "2026-05-01",
     endDate: null,
     description:
-      "Building Line Krungsri Simple — a fintech app for account notifications and financial management.",
+      "Developed and maintained new features for Line Krungsri Simple, Bank of Ayudhya's LINE-based banking platform, helping expand and improve its customer-facing banking capabilities",
     logo: krungsriNimble,
     project: {
       name: "Line Krungsri Simple",
@@ -17,20 +17,20 @@ export const experiences = [
   },
   {
     company: "Krungsri Nimble",
-    role: "Developer · Internship",
+    role: "Developer Intern",
     startDate: "2025-04-01",
     endDate: "2026-04-30",
     description:
-      "Developed SQLServer Agent and NIMA (Nimble Internal Machine Assistant) using FastAPI and LangChain.",
+      "Developed NIMA Application, an internal productivity app that combines sprint task management with Pomodoro-based time tracking, and SQLServer Agent, an AI tool for evaluating SQL queries, scoring quality, and recommending optimizations",
     logo: krungsriNimble,
   },
   {
     company: "ISSIE · Chulalongkorn University",
-    role: "Backend Developer · Freelance",
+    role: "Backend Developer",
     startDate: "2024-02-01",
     endDate: "2025-04-30",
     description:
-      "Built backend services and APIs with NestJS and Minio for social research systems.",
+      "Collaborated with Chulalongkorn University to develop Thai EconoMAP, a map-based platform that connects users with local businesses across Thailand, including community shops, restaurants, and mobile vendors (rot phum phuang)",
     logo: issieChula,
     project: {
       name: "Thai EconoMAP",

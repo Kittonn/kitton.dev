@@ -5,6 +5,7 @@ import avatar from "../assets/avatar.jpg";
 import { getSortedBlogs } from "../utils/content";
 import { Icon } from "astro-icon/components";
 import { config } from "../config";
+import SectionHeading from "../components/SectionHeading.astro";
 
 const recentBlogs = (await getSortedBlogs()).slice(0, 5);
 ---
@@ -35,8 +36,8 @@ const recentBlogs = (await getSortedBlogs()).slice(0, 5);
       <div class="space-y-3 leading-relaxed text-neutral-500">
         <p>
           I'm a Software Engineer working in fintech, passionate about building
-          scalable systems, designing reliable software, and exploring new
-          technologies.
+          scalable distributed systems, designing reliable software, and
+          exploring new technologies.
         </p>
         <p>
           This blog is where I share things I learn, build, and discover along
@@ -63,44 +64,44 @@ const recentBlogs = (await getSortedBlogs()).slice(0, 5);
   </section>
 
   <section class="mt-14">
-    <h2 class="mb-6 text-xs tracking-widest text-neutral-400 uppercase">
-      Recent Blogs
-    </h2>
+    <SectionHeading>Recent Blogs</SectionHeading>
 
-    {
-      recentBlogs.length === 0 ? (
-        <p class="text-sm text-neutral-400">No blogs yet. Check back soon.</p>
-      ) : (
-        <>
-          <ul class="space-y-5">
-            {recentBlogs.map(blog => (
-              <li>
-                <a
-                  href={`/blogs/${blog.id}`}
-                  class="group flex items-baseline justify-between gap-4"
-                >
-                  <span class="text-neutral-700 transition-colors group-hover:text-neutral-400">
-                    {blog.data.title}
-                  </span>
-                  <span class="shrink-0 text-xs text-neutral-400">
-                    {blog.data.publishedDate.toLocaleDateString("en-GB", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-          <a
-            href="/blogs"
-            class="mt-8 inline-block text-xs tracking-widest text-neutral-400 uppercase transition-colors hover:text-neutral-900"
-          >
-            All blogs →
-          </a>
-        </>
-      )
-    }
+    <div class="mt-8">
+      {
+        recentBlogs.length === 0 ? (
+          <p class="text-sm text-neutral-400">No blogs yet. Check back soon.</p>
+        ) : (
+          <>
+            <ul class="space-y-5">
+              {recentBlogs.map(blog => (
+                <li>
+                  <a
+                    href={`/blogs/${blog.id}`}
+                    class="group flex items-baseline justify-between gap-4"
+                  >
+                    <span class="text-neutral-500 transition-colors group-hover:text-neutral-900">
+                      {blog.data.title}
+                    </span>
+                    <span class="shrink-0 text-xs text-neutral-400">
+                      {blog.data.publishedDate.toLocaleDateString("en-GB", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="/blogs"
+              class="mt-8 inline-block text-xs tracking-widest text-neutral-400 uppercase transition-colors hover:text-neutral-900"
+            >
+              All blogs →
+            </a>
+          </>
+        )
+      }
+    </div>
   </section>
 </BaseLayout>

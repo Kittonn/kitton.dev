@@ -3,28 +3,28 @@ import { Picture } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import avatar from "../assets/avatar.jpg";
 import { Icon } from "astro-icon/components";
-import { config } from "../config";
 import { formatPeriod } from "../utils/date";
 import { experiences } from "../data/experience";
 import { educations } from "../data/education";
+import { skills } from "../data/skills";
+import SectionHeading from "../components/SectionHeading.astro";
 ---
 
 <BaseLayout title="About">
-  <section class="flex flex-col items-start gap-6 sm:flex-row sm:gap-10">
-    <Picture
-      src={avatar}
-      formats={["avif", "webp"]}
-      alt="Kittipod Lambangchang"
-      width={400}
-      height={500}
-      loading="eager"
-      fetchpriority="high"
-      class="aspect-3/4 w-48 shrink-0 rounded-md object-cover"
-    />
+  <section class="space-y-6">
+    <div class="flex items-center gap-5">
+      <Picture
+        src={avatar}
+        formats={["avif", "webp"]}
+        alt="Kittipod Lambangchang"
+        width={400}
+        height={500}
+        loading="eager"
+        fetchpriority="high"
+        class="size-20 shrink-0 rounded-full object-cover"
+      />
 
-    <div class="flex flex-1 flex-col gap-4">
       <div class="space-y-1">
-        <p class="text-xs tracking-widest text-neutral-400 uppercase">About</p>
         <h1 class="text-2xl font-semibold text-neutral-900 sm:text-3xl">
           Kittipod Lambangchang
         </h1>
@@ -32,57 +32,45 @@ import { educations } from "../data/education";
           aka Kitton <span class="mx-1.5">·</span> Software Engineer
         </p>
       </div>
+    </div>
 
-      <div class="space-y-3 leading-relaxed text-neutral-500">
-        <p>
-          I'm a Software Engineer working in fintech, passionate about building
-          scalable systems, designing reliable software, and exploring new
-          technologies.
-        </p>
-        <p>
-          I enjoy writing about things I learn along the way — whether it's a
-          new tool, a pattern that clicked, or a problem worth sharing.
-        </p>
-      </div>
-
-      <div class="flex items-center gap-3">
-        {
-          config.contacts.map(contact => (
-            <a
-              href={contact.href}
-              class="text-neutral-400 transition-colors hover:text-neutral-900"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={contact.label}
-            >
-              <Icon name={contact.icon} class="size-5" />
-            </a>
-          ))
-        }
-      </div>
+    <div class="space-y-3 leading-relaxed text-neutral-500">
+      <p>
+        I'm a Software Engineer working in fintech, passionate about building
+        scalable distributed systems and designing reliable software, with a
+        strong interest in cloud computing and microservices. I love seeing my
+        work make a real impact for the people who use it. In my free time, I
+        research new tech stacks to continuously improve my engineering skills
+        and apply them to my work.
+      </p>
+      <p>
+        This blog is where I share things I learn, build, and discover along the
+        way.
+      </p>
     </div>
   </section>
 
   <section class="mt-16">
-    <h2 class="mb-8 text-sm tracking-widest text-neutral-400 uppercase">
-      Experience
-    </h2>
+    <SectionHeading>Experience</SectionHeading>
 
-    <ul class="space-y-10">
+    <ul class="mt-8 space-y-10">
       {
         experiences.map((item, index) => (
           <li class="relative flex items-start gap-4">
             <div
-              class={`absolute left-5.5 w-px bg-neutral-200${index < experiences.length - 1 ? " top-0 -bottom-10" : " top-0 h-6"}`}
+              class:list={[
+                "absolute top-0 left-5.5 w-0.25 bg-neutral-200 sm:left-7",
+                index < experiences.length - 1 ? "-bottom-10" : "h-6",
+              ]}
             />
 
             <Picture
               src={item.logo}
               formats={["avif", "webp"]}
               alt={item.company}
-              width={44}
-              height={44}
-              class="relative z-10 mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 ring-neutral-200"
+              width={1000}
+              height={1000}
+              class="relative z-10 mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 ring-neutral-200 sm:size-14"
             />
 
             <div class="flex-1">
@@ -120,11 +108,9 @@ import { educations } from "../data/education";
   </section>
 
   <section class="mt-16">
-    <h2 class="mb-8 text-sm tracking-widest text-neutral-400 uppercase">
-      Education
-    </h2>
+    <SectionHeading>Education</SectionHeading>
 
-    <ul class="space-y-10">
+    <ul class="mt-8 space-y-10">
       {
         educations.map(item => (
           <li class="flex items-start gap-4">
@@ -132,11 +118,11 @@ import { educations } from "../data/education";
               src={item.logo}
               formats={["avif", "webp"]}
               alt={item.institution}
-              width={44}
-              height={44}
+              width={1000}
+              height={1000}
               loading="eager"
               fetchpriority="high"
-              class="mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 ring-neutral-200"
+              class="mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 ring-neutral-200 sm:size-14"
             />
 
             <div class="flex-1">
@@ -153,5 +139,27 @@ import { educations } from "../data/education";
         ))
       }
     </ul>
+  </section>
+
+  <section class="mt-16">
+    <SectionHeading>Skills</SectionHeading>
+
+    <dl class="mt-8 space-y-5">
+      {
+        skills.map(group => (
+          <div class="flex gap-4">
+            <dt class="w-24 shrink-0 text-neutral-400">{group.category}</dt>
+            <dd class="flex flex-wrap gap-x-4 gap-y-2">
+              {group.items.map(skill => (
+                <div class="flex items-center gap-1.5">
+                  <Icon name={skill.icon} class="size-4" />
+                  <span class="text-neutral-700">{skill.name}</span>
+                </div>
+              ))}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
   </section>
 </BaseLayout>
