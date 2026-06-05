@@ -59,7 +59,7 @@ import SectionHeading from "../components/SectionHeading.astro";
           <li class="relative flex items-start gap-4">
             <div
               class:list={[
-                "absolute top-0 left-5.5 w-0.25 bg-neutral-200 sm:left-7",
+                "absolute top-0 left-5.5 w-px bg-neutral-200 sm:left-7",
                 index < experiences.length - 1 ? "-bottom-10" : "h-6",
               ]}
             />
@@ -70,6 +70,8 @@ import SectionHeading from "../components/SectionHeading.astro";
               alt={item.company}
               width={1000}
               height={1000}
+              loading="eager"
+              fetchpriority="high"
               class="relative z-10 mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 ring-neutral-200 sm:size-14"
             />
 
@@ -120,8 +122,6 @@ import SectionHeading from "../components/SectionHeading.astro";
               alt={item.institution}
               width={1000}
               height={1000}
-              loading="eager"
-              fetchpriority="high"
               class="mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 ring-neutral-200 sm:size-14"
             />
 
