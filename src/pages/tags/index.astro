@@ -6,14 +6,18 @@ const tags = await getUniqueTags();
 ---
 
 <BaseLayout title="Tags">
-  <h1 class="mb-6 text-xs tracking-widest text-neutral-400 uppercase">Tags</h1>
-  <ul class="flex flex-wrap gap-3">
+  <h1
+    class="mb-8 text-lg font-semibold tracking-widest text-neutral-900 uppercase"
+  >
+    Tags
+  </h1>
+  <ul class="flex flex-wrap gap-x-5 gap-y-3">
     {
       tags.map((tag: string) => (
         <li>
           <a
             href={`/tags/${tag}`}
-            class="text-xs text-neutral-400 transition-colors hover:text-neutral-900"
+            class="text-neutral-600 underline decoration-neutral-200 underline-offset-4 transition-colors hover:text-neutral-900 hover:decoration-neutral-900"
           >
             #{tag}
           </a>
