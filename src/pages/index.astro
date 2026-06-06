@@ -12,60 +12,56 @@ import { config } from "../config";
 ---
 
 <BaseLayout title="Home">
-  <section class="space-y-6">
-    <div class="flex items-center gap-4 sm:gap-5">
-      <Picture
-        src={avatar}
-        formats={["avif", "webp"]}
-        alt="Kittipod Lambangchang"
-        loading="eager"
-        fetchpriority="high"
-        class="size-16 shrink-0 rounded-full object-cover sm:size-20"
-      />
+  <section class="flex flex-col items-start gap-10 sm:flex-row">
+    <Picture
+      src={avatar}
+      formats={["avif", "webp"]}
+      alt="Kittipod Lambangchang"
+      loading="eager"
+      fetchpriority="high"
+      class="aspect-3/4 w-56 shrink-0 rounded-md object-cover"
+    />
 
+    <div class="flex flex-1 flex-col gap-4">
       <div class="space-y-1">
-        <h1 class="text-xl font-semibold text-neutral-900 sm:text-3xl">
+        <h1 class="text-2xl font-semibold text-neutral-900 sm:text-3xl">
           Kittipod Lambangchang
         </h1>
         <p class="text-neutral-400">
           aka Kitton <span class="mx-1.5">·</span> Software Engineer
         </p>
       </div>
-    </div>
 
-    <div class="space-y-3 leading-relaxed text-neutral-500">
-      <p>
-        I'm a Software Engineer working in fintech, passionate about building
-        scalable distributed systems and designing reliable software, with a
-        strong interest in cloud computing and microservices. I love seeing my
-        work make a real impact for the people who use it. In my free time, I
-        research new tech stacks to continuously improve my engineering skills
-        and apply them to my work.
-      </p>
-      <p>
-        This blog is where I share things I learn, build, and discover along the
-        way.
-      </p>
-    </div>
+      <div class="space-y-3 leading-relaxed text-neutral-500">
+        <p>
+          I'm a Software Engineer working in fintech, passionate about building
+          scalable distributed systems and designing reliable software, with a
+          strong interest in cloud computing and microservices. I love seeing my
+          work make a real impact for the people who use it. In my free time, I
+          research new tech stacks to continuously improve my engineering skills
+          and apply them to my work.
+        </p>
+      </div>
 
-    <div class="flex items-center gap-3">
-      {
-        config.contacts.map(contact => (
-          <a
-            href={contact.href}
-            class="text-neutral-400 transition-colors hover:text-neutral-900"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={contact.label}
-          >
-            <Icon name={contact.icon} class="size-5" />
-          </a>
-        ))
-      }
+      <div class="flex flex-wrap items-center gap-3">
+        {
+          config.contacts.map(contact => (
+            <a
+              href={contact.href}
+              class="flex items-center gap-2 text-neutral-400 transition-colors hover:text-neutral-900"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name={contact.icon} class="size-5" />
+              {contact.label}
+            </a>
+          ))
+        }
+      </div>
     </div>
   </section>
 
-  <section class="mt-16">
+  <section id="experience" class="mt-16">
     <SectionHeading>Experience</SectionHeading>
 
     <ul class="mt-8 space-y-10">
@@ -122,7 +118,7 @@ import { config } from "../config";
     </ul>
   </section>
 
-  <section class="mt-16">
+  <section id="education" class="mt-16">
     <SectionHeading>Education</SectionHeading>
 
     <ul class="mt-8 space-y-10">
@@ -152,7 +148,7 @@ import { config } from "../config";
     </ul>
   </section>
 
-  <section class="mt-16">
+  <section id="skills" class="mt-16">
     <SectionHeading>Skills</SectionHeading>
 
     <dl class="mt-8 space-y-5">

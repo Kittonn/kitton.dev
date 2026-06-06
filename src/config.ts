@@ -6,7 +6,11 @@ export const config = {
     language: "en",
     author: "Kittipod Lambangchang",
   },
-  navigation: [{ name: "Home", href: "/" }],
+  navigation: [
+    { name: "Experience", short: "Exp", href: "#experience" },
+    { name: "Education", short: "Edu", href: "#education" },
+    { name: "Skills", short: "Skills", href: "#skills" },
+  ],
   contacts: [
     {
       label: "GitHub",
