@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i '' 's|coverImage: \"/images/markdown-cover.jpg\"|coverImage: \"../../assets/covers/mock_cover.webp\"|' /Users/11530573/Workspace/github/kitton.dev/src/content/blogs/markdown-elements-showcase.md)",
+      "Bash(sed -i '' 's|coverImage: \"/images/tailwind-v4-cover.jpg\"|coverImage: \"../../assets/covers/mock_cover.webp\"|' /Users/11530573/Workspace/github/kitton.dev/src/content/blogs/tailwind-css-v4-guide.md)",
+      "Bash(sed -i '' 's|coverImage: \"/images/css-layout-cover.jpg\"|coverImage: \"../../assets/covers/mock_cover.webp\"|' /Users/11530573/Workspace/github/kitton.dev/src/content/blogs/css-modern-layout.md)",
+      "Bash(sed -i '' 's|coverImage: \"/images/performance-cover.jpg\"|coverImage: \"../../assets/covers/mock_cover.webp\"|' /Users/11530573/Workspace/github/kitton.dev/src/content/blogs/web-performance-guide.md)",
+      "Bash(sed -i '' 's|coverImage: \"/images/astro-cover.jpg\"|coverImage: \"../../assets/covers/mock_cover.webp\"|' /Users/11530573/Workspace/github/kitton.dev/src/content/blogs/getting-started-with-astro.md)",
+      "Bash(node -e ' *)",
+      "Bash(node --input-type=module -e ' *)"
+    ]
+  }
+}

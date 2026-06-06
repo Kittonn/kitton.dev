@@ -1,5 +1,4 @@
 ---
-import { config } from "../config";
 import "../styles/global.css";
 import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
@@ -20,13 +19,7 @@ const { title } = Astro.props;
     <title>{title}</title>
 
     <Font cssVariable="--font-geist" preload />
-
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={config.site.title}
-      href={new URL("rss.xml", Astro.site)}
-    />
+    <Font cssVariable="--font-jetbrains-mono" preload />
 
     <ClientRouter />
   </head>
