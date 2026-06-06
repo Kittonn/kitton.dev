@@ -1,8 +1,7 @@
 // @ts-check
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
-import mdx from "@astrojs/mdx";
 import { config } from "./src/config";
 import icon from "astro-icon";
 
@@ -18,17 +17,20 @@ export default defineConfig({
       name: "Geist",
       cssVariable: "--font-geist",
     },
+    {
+      provider: fontProviders.fontsource(),
+      name: "JetBrains Mono",
+      cssVariable: "--font-jetbrains-mono",
+    },
   ],
 
   vite: {
     plugins: [tailwindcss()],
   },
 
-  integrations: [
-    mdx(),
-    sitemap(),
-    icon(),
-  ],
+  integrations: [sitemap(), icon()],
 
-  markdown: {},
+  experimental: {
+    svgOptimizer: svgoOptimizer(),
+  },
 });

@@ -1,14 +1,16 @@
 ---
 import { Icon } from "astro-icon/components";
 import { config } from "../config";
+
+const year = new Date().getFullYear();
 ---
 
 <footer class="mx-auto w-full max-w-3xl px-6 py-8">
   <div
     class="flex items-center justify-between border-t border-neutral-200 pt-6"
   >
-    <p class="text-xs text-neutral-400">
-      &copy; {new Date().getFullYear()}
+    <p class="text-sm text-neutral-400">
+      &copy; {year}
       {config.site.author}
     </p>
 
@@ -22,7 +24,7 @@ import { config } from "../config";
             rel="noopener noreferrer"
             aria-label={contact.label}
           >
-            <Icon name={contact.icon} class="size-4" />
+            <Icon name={contact.icon} class="size-5" />
           </a>
         ))
       }

@@ -7,10 +7,9 @@ export const config = {
     author: "Kittipod Lambangchang",
   },
   navigation: [
-    { name: "Home", href: "/" },
-    { name: "Blogs", href: "/blogs" },
-    { name: "Tags", href: "/tags" },
-    { name: "About", href: "/about" },
+    { name: "Experience", short: "Exp", href: "#experience" },
+    { name: "Education", short: "Edu", href: "#education" },
+    { name: "Skills", short: "Skills", href: "#skills" },
   ],
   contacts: [
     {
