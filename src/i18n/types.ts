@@ -14,6 +14,8 @@ export type Translations = {
     };
   };
   hero: {
+    name: string;
+    nickname: string;
     subtitle: string;
     bio: string;
   };
@@ -45,9 +47,12 @@ export type Translations = {
       degree: string;
     };
   };
+  footer: {
+    author: string;
+  };
   notFound: {
     title: string;
     description: string;
-    back: string;
+    backToHome: string;
   };
 };

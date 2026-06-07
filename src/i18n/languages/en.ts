@@ -1,10 +1,14 @@
-const en = {
+import type { Translations } from "../types";
+
+const en: Translations = {
   nav: {
     experience: { full: "Experience", short: "Exp" },
     education: { full: "Education", short: "Edu" },
     skills: { full: "Skills", short: "Skills" },
   },
   hero: {
+    name: "Kittipod Lambangchang",
+    nickname: "Kitton",
     subtitle: "Software Engineer",
     bio: "I'm a Software Engineer working in fintech, passionate about building scalable distributed systems and designing reliable software, with a strong interest in cloud computing and microservices. I love seeing my work make a real impact for the people who use it. In my free time, I research new tech stacks to continuously improve my engineering skills and apply them to my work.",
   },
@@ -40,10 +44,13 @@ const en = {
         "Bachelor of Engineering - Computer Engineering (First Class Honors)",
     },
   },
+  footer: {
+    author: "Kittipod Lambangchang",
+  },
   notFound: {
     title: "Page not found",
     description: "The page you're looking for doesn't exist or has been moved.",
-    back: "← Back to home",
+    backToHome: "← Back to home",
   },
 };
 

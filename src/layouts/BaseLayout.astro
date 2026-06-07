@@ -4,6 +4,7 @@ import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { config } from "../config";
 
 type Props = {
   title: string;
@@ -12,7 +13,7 @@ type Props = {
 const { title } = Astro.props;
 ---
 
-<html lang="en">
+<html lang={Astro.currentLocale ?? config.site.language}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
