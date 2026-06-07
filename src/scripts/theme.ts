@@ -12,7 +12,6 @@ const getSavedTheme = () => {
 const applyTheme = (theme: string) => {
   const resolved = theme === "system" ? getSystemTheme() : theme;
   document.documentElement.classList.toggle("dark", resolved === "dark");
-  document.documentElement.setAttribute("data-theme", theme);
 };
 
 const updateIcon = (choice: string) => {
@@ -27,6 +26,7 @@ const updateIcon = (choice: string) => {
     dark: ".moon",
     system: ".system",
   };
+
   Object.entries(iconMap).forEach(([theme, selector]) => {
     const icon = toggle.querySelector(selector) as HTMLElement;
     const isActive = theme === choice;
@@ -87,5 +87,8 @@ document.addEventListener("astro:after-swap", setup);
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", () => {
-    if (getSavedTheme() === "system") applyTheme("system");
+    if (getSavedTheme() === "system") {
+      applyTheme("system");
+      updateIcon("system");
+    }
   });
