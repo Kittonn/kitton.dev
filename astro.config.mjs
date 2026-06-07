@@ -33,4 +33,12 @@ export default defineConfig({
   experimental: {
     svgOptimizer: svgoOptimizer(),
   },
+
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });
