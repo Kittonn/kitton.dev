@@ -1,0 +1,66 @@
+---
+import { Icon } from "astro-icon/components";
+
+const THEMES = [
+  {
+    label: "Light",
+    value: "light",
+    icon: "lucide:sun",
+  },
+  {
+    label: "Dark",
+    value: "dark",
+    icon: "lucide:moon",
+  },
+  {
+    label: "System",
+    value: "system",
+    icon: "lucide:monitor",
+  },
+];
+---
+
+<div class="relative">
+  <button
+    id="theme-toggle"
+    aria-label="Toggle theme"
+    class="flex items-center text-neutral-400 transition-all hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-100"
+  >
+    <Icon name="lucide:sun" class="light size-4.5 sm:size-6" />
+    <Icon name="lucide:moon" class="moon hidden size-4.5 sm:size-6" />
+    <Icon name="lucide:monitor" class="system hidden size-4.5 sm:size-6" />
+  </button>
+
+  <div
+    id="theme-dropdown"
+    class="absolute top-8 right-0 hidden w-36 overflow-hidden rounded-xl border border-neutral-200 bg-white py-1 shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    {
+      THEMES.map(theme => (
+        <button
+          data-theme={theme.value}
+          class="flex w-full cursor-pointer items-center gap-2.5 border-0 bg-transparent px-3 py-2 text-sm text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-700"
+        >
+          <Icon name={theme.icon} class="size-4 shrink-0" />
+          {theme.label}
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  #theme-toggle {
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  [data-theme].active {
+    background-color: rgb(243 244 246);
+  }
+
+  :global(.dark) [data-theme].active {
+    background-color: rgb(63 63 70);
+  }
+</style>

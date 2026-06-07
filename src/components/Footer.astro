@@ -10,9 +10,9 @@ const year = new Date().getFullYear();
 
 <footer class="mx-auto w-full max-w-3xl px-6 py-8">
   <div
-    class="flex items-center justify-between border-t border-neutral-200 pt-6"
+    class="flex items-center justify-between border-t border-neutral-200 pt-6 dark:border-neutral-700"
   >
-    <p class="text-sm text-neutral-400">
+    <p class="text-sm text-neutral-400 dark:text-neutral-500">
       &copy; {year}
       {t.footer.author}
     </p>
@@ -22,7 +22,7 @@ const year = new Date().getFullYear();
         contacts.map(contact => (
           <a
             href={contact.href}
-            class="text-neutral-400 transition-colors hover:text-neutral-900"
+            class="text-neutral-400 transition-colors hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-100"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={contact.label}
