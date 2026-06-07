@@ -1,0 +1,32 @@
+:root {
+  --foreground: oklch(0.21 0 0); /* neutral-900 */
+  --foreground-secondary: oklch(0.37 0 0); /* neutral-700 */
+  --muted-foreground: oklch(0.56 0 0); /* neutral-500 */
+  --subtle-foreground: oklch(0.71 0 0); /* neutral-400 */
+  --background: oklch(0.985 0.001 106); /* stone-50   */
+  --card: oklch(1 0 0); /* white      */
+  --muted: oklch(0.97 0 0); /* neutral-100 */
+  --border: oklch(0.92 0 0); /* neutral-200 */
+}
+
+.dark {
+  --foreground: oklch(0.97 0 0); /* neutral-100 */
+  --foreground-secondary: oklch(0.87 0 0); /* neutral-300 */
+  --muted-foreground: oklch(0.71 0 0); /* neutral-400 */
+  --subtle-foreground: oklch(0.56 0 0); /* neutral-500 */
+  --background: oklch(0.21 0 0); /* neutral-900 */
+  --card: oklch(0.27 0 0); /* neutral-800 */
+  --muted: oklch(0.37 0 0); /* neutral-700 */
+  --border: oklch(0.37 0 0); /* neutral-700 */
+}
+
+@theme inline {
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
