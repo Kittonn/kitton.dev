@@ -8,14 +8,39 @@ import { experiences } from "../data/experience";
 import { educations } from "../data/education";
 import { skills } from "../data/skills";
 import SectionHeading from "../components/SectionHeading.astro";
-import { contacts } from "../data/contacts";
 import { useTranslations } from "../i18n";
 import type { Locale } from "../i18n";
+import { config } from "../config";
+
+const { contacts } = config;
+
+const iconMap: Record<string, string> = {
+  GitHub: "mdi:github",
+  LinkedIn: "mdi:linkedin",
+  Email: "mdi:gmail",
+};
 
 const t = useTranslations((Astro.currentLocale ?? "en") as Locale);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: config.site.author,
+  alternateName: config.site.aka,
+  url: config.site.url,
+  jobTitle: config.site.jobTitle,
+  sameAs: contacts.filter(c => !c.url.startsWith("mailto:")).map(c => c.url),
+};
 ---
 
-<BaseLayout title="Home">
+<BaseLayout title="Kittipod Lambangchang — Software Engineer">
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
+
   <section class="flex flex-col items-start gap-10 sm:flex-row">
     <Picture
       src={avatar}
@@ -46,13 +71,13 @@ const t = useTranslations((Astro.currentLocale ?? "en") as Locale);
         {
           contacts.map(contact => (
             <a
-              href={contact.href}
+              href={contact.url}
               class="text-subtle-foreground hover:text-foreground flex items-center gap-2 transition-colors"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon name={contact.icon} class="size-5" />
-              {contact.label}
+              <Icon name={iconMap[contact.name]} class="size-5" />
+              {contact.name}
             </a>
           ))
         }
@@ -81,8 +106,7 @@ const t = useTranslations((Astro.currentLocale ?? "en") as Locale);
                 src={item.logo}
                 formats={["avif", "webp"]}
                 alt={exp.company}
-                loading="eager"
-                fetchpriority="high"
+                loading="lazy"
                 class="ring-border relative z-10 mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 sm:size-14"
               />
 
@@ -134,6 +158,7 @@ const t = useTranslations((Astro.currentLocale ?? "en") as Locale);
                 src={item.logo}
                 formats={["avif", "webp"]}
                 alt={edu.institution}
+                loading="lazy"
                 class="ring-border mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 sm:size-14"
               />
 
