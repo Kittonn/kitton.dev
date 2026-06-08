@@ -76,7 +76,11 @@ const jsonLd = {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon name={iconMap[contact.name]} class="size-5" />
+              <Icon
+                name={iconMap[contact.name]}
+                class="size-5"
+                aria-hidden="true"
+              />
               {contact.name}
             </a>
           ))
@@ -134,7 +138,11 @@ const jsonLd = {
                     class="text-muted-foreground decoration-border hover:text-foreground hover:decoration-foreground mt-3 inline-flex items-center gap-1 text-sm underline underline-offset-4 transition-colors"
                   >
                     {item.project.name}
-                    <Icon name="mdi:arrow-top-right" class="size-3" />
+                    <Icon
+                      name="mdi:arrow-top-right"
+                      class="size-3"
+                      aria-hidden="true"
+                    />
                   </a>
                 )}
               </div>

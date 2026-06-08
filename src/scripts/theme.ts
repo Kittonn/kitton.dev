@@ -65,7 +65,10 @@ const setup = () => {
 
   themeToggle.addEventListener("click", e => {
     e.stopPropagation();
+    const isOpen = !dropdown.classList.contains("hidden");
+
     dropdown.classList.toggle("hidden");
+    themeToggle.setAttribute("aria-expanded", String(!isOpen));
   });
 
   document.querySelectorAll("[data-theme]").forEach(button => {
@@ -77,7 +80,10 @@ const setup = () => {
     });
   });
 
-  document.addEventListener("click", () => dropdown.classList.add("hidden"));
+  document.addEventListener("click", () => {
+    dropdown.classList.add("hidden");
+    themeToggle.setAttribute("aria-expanded", "false");
+  });
 };
 
 setup();
