@@ -62,9 +62,16 @@ const ogImageUrl = new URL("/og.png", config.site.url).href;
   </head>
 
   <body class="bg-background text-foreground flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="bg-background text-foreground fixed top-4 left-4 z-9999 -translate-y-20 rounded-md px-4 py-2 text-sm font-medium transition-transform focus:translate-y-0"
+    >
+      Skip to main content
+    </a>
+
     <Header transition:persist />
 
-    <main class="mx-auto w-full max-w-3xl flex-1 px-6 py-8">
+    <main id="main" class="mx-auto w-full max-w-3xl flex-1 px-6 py-8">
       <slot />
     </main>
     <Footer />

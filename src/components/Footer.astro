@@ -32,7 +32,11 @@ const iconMap: Record<string, string> = {
             rel="noopener noreferrer"
             aria-label={contact.name}
           >
-            <Icon name={iconMap[contact.name]} class="size-5" />
+            <Icon
+              name={iconMap[contact.name]}
+              class="size-5"
+              aria-hidden="true"
+            />
           </a>
         ))
       }
