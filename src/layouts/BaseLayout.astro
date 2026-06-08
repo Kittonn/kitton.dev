@@ -1,0 +1,83 @@
+---
+import "../styles/global.css";
+import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { config } from "../config";
+
+type Props = {
+  title: string;
+  description?: string;
+};
+
+const { title = config.site.title, description = config.site.description } =
+  Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, config.site.url).href;
+const ogImageUrl = new URL("/og.png", config.site.url).href;
+---
+
+<html lang={Astro.currentLocale ?? config.site.language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={config.site.author} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={config.site.title} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta property="twitter:url" content={canonicalUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <Font cssVariable="--font-geist" preload />
+    <Font cssVariable="--font-jetbrains-mono" preload />
+
+    <ClientRouter />
+
+    <slot name="head" />
+  </head>
+
+  <body class="bg-background text-foreground flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="bg-background text-foreground fixed top-4 left-4 z-9999 -translate-y-20 rounded-md px-4 py-2 text-sm font-medium transition-transform focus:translate-y-0"
+    >
+      Skip to main content
+    </a>
+
+    <Header transition:persist />
+
+    <main id="main" class="mx-auto w-full max-w-3xl flex-1 px-6 py-8">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import "../scripts/theme";
+    </script>
+  </body>
+</html>

@@ -1,11 +1,221 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { Picture } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import avatar from "../assets/avatar.jpg";
+import { Icon } from "astro-icon/components";
+import { formatPeriod } from "../utils/date";
+import { experiences } from "../data/experience";
+import { educations } from "../data/education";
+import { skills } from "../data/skills";
+import SectionHeading from "../components/SectionHeading.astro";
+import { useTranslations } from "../i18n";
+import type { Locale } from "../i18n";
+import { config } from "../config";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const { contacts } = config;
+
+const iconMap: Record<string, string> = {
+  GitHub: "mdi:github",
+  LinkedIn: "mdi:linkedin",
+  Email: "mdi:gmail",
+};
+
+const t = useTranslations((Astro.currentLocale ?? "en") as Locale);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: config.site.author,
+  alternateName: config.site.aka,
+  url: config.site.url,
+  jobTitle: config.site.jobTitle,
+  sameAs: contacts.filter(c => !c.url.startsWith("mailto:")).map(c => c.url),
+};
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Kittipod Lambangchang — Software Engineer">
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
+
+  <section class="flex flex-col items-start gap-10 sm:flex-row">
+    <Picture
+      src={avatar}
+      formats={["avif", "webp"]}
+      alt={t.hero.name}
+      loading="eager"
+      fetchpriority="high"
+      widths={[224, 448]}
+      sizes="224px"
+      class="aspect-3/4 w-56 shrink-0 rounded-md object-cover"
+    />
+
+    <div class="flex flex-1 flex-col gap-4">
+      <div class="space-y-1">
+        <h1 class="text-foreground text-2xl font-semibold sm:text-3xl">
+          {t.hero.name}
+        </h1>
+        <p class="text-subtle-foreground">
+          aka {t.hero.nickname}
+          <span class="mx-1.5">·</span>
+          {t.hero.subtitle}
+        </p>
+      </div>
+
+      <div class="text-muted-foreground space-y-3 leading-relaxed">
+        <p>{t.hero.bio}</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        {
+          contacts.map(contact => (
+            <a
+              href={contact.url}
+              class="text-subtle-foreground hover:text-foreground flex items-center gap-2 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon
+                name={iconMap[contact.name]}
+                class="size-5"
+                aria-hidden="true"
+              />
+              {contact.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="mt-16">
+    <SectionHeading>{t.section.experience}</SectionHeading>
+
+    <ul class="mt-8 space-y-10">
+      {
+        experiences.map((item, index) => {
+          const exp = t.exp[item.id as keyof typeof t.exp];
+
+          return (
+            <li class="relative flex items-start gap-4">
+              <div
+                class:list={[
+                  "bg-border absolute top-0 left-5.5 w-px sm:left-7",
+                  index < experiences.length - 1 ? "-bottom-10" : "h-6",
+                ]}
+              />
+
+              <Picture
+                src={item.logo}
+                formats={["avif", "webp"]}
+                alt={exp.company}
+                loading="lazy"
+                widths={[56, 112]}
+                sizes="(min-width: 640px) 56px, 44px"
+                class="ring-border relative z-10 mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 sm:size-14"
+              />
+
+              <div class="flex-1">
+                <div class="sm:flex sm:items-start sm:justify-between sm:gap-4">
+                  <div>
+                    <p class="text-foreground font-semibold">{exp.role}</p>
+                    <p class="text-foreground-secondary mt-0.5 text-sm font-medium">
+                      {exp.company}
+                    </p>
+                  </div>
+                  <span class="text-subtle-foreground mt-0.5 block text-sm sm:mt-0 sm:shrink-0">
+                    {formatPeriod(item.startDate, item.endDate)}
+                  </span>
+                </div>
+                <p class="text-muted-foreground mt-3 text-sm leading-relaxed">
+                  {exp.description}
+                </p>
+
+                {item.project && (
+                  <a
+                    href={item.project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-muted-foreground decoration-border hover:text-foreground hover:decoration-foreground mt-3 inline-flex items-center gap-1 text-sm underline underline-offset-4 transition-colors"
+                  >
+                    {item.project.name}
+                    <Icon
+                      name="mdi:arrow-top-right"
+                      class="size-3"
+                      aria-hidden="true"
+                    />
+                  </a>
+                )}
+              </div>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+
+  <section id="education" class="mt-16">
+    <SectionHeading>{t.section.education}</SectionHeading>
+
+    <ul class="mt-8 space-y-10">
+      {
+        educations.map(item => {
+          const edu = t.edu[item.id as keyof typeof t.edu];
+          return (
+            <li class="flex items-start gap-4">
+              <Picture
+                src={item.logo}
+                formats={["avif", "webp"]}
+                alt={edu.institution}
+                loading="lazy"
+                widths={[56, 112]}
+                sizes="(min-width: 640px) 56px, 44px"
+                class="ring-border mt-0.5 size-11 shrink-0 rounded-xl object-contain ring-1 sm:size-14"
+              />
+
+              <div class="flex-1 sm:flex sm:items-start sm:justify-between sm:gap-4">
+                <div>
+                  <p class="text-foreground font-semibold">{edu.institution}</p>
+                  <p class="text-muted-foreground mt-0.5 text-sm">
+                    {edu.degree}
+                  </p>
+                </div>
+
+                <span class="text-subtle-foreground mt-0.5 block text-sm sm:mt-0 sm:shrink-0">
+                  {formatPeriod(item.startDate, item.endDate)}
+                </span>
+              </div>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+
+  <section id="skills" class="mt-16">
+    <SectionHeading>{t.section.skills}</SectionHeading>
+
+    <dl class="mt-8 space-y-5">
+      {
+        skills.map(group => (
+          <div class="flex gap-4">
+            <dt class="text-subtle-foreground w-24 shrink-0">
+              {group.category}
+            </dt>
+            <dd class="flex flex-wrap gap-x-4 gap-y-2">
+              {group.items.map(skill => (
+                <div class="flex items-center gap-1.5">
+                  <Icon name={skill.icon} class="size-4" />
+                  <span class="text-foreground-secondary">{skill.name}</span>
+                </div>
+              ))}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+</BaseLayout>

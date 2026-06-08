@@ -1,0 +1,60 @@
+---
+import { config } from "../config";
+import { useTranslations } from "../i18n";
+import type { Locale } from "../i18n";
+import ThemeIcon from "./ThemeIcon.astro";
+
+const t = useTranslations((Astro.currentLocale ?? "en") as Locale);
+
+type NavItem = {
+  key: keyof typeof t.nav;
+  href: string;
+};
+
+const navItems = [
+  { key: "experience", href: "#experience" },
+  { key: "education", href: "#education" },
+  { key: "skills", href: "#skills" },
+] satisfies NavItem[];
+---
+
+<header class="bg-background/80 sticky top-0 z-1000 backdrop-blur-sm">
+  <div class="mx-auto w-full max-w-3xl px-6 py-6">
+    <nav
+      aria-label="Main navigation"
+      class="flex items-center justify-between gap-3 sm:gap-6"
+    >
+      <div class="flex items-center gap-3 sm:gap-6">
+        <a
+          href="/"
+          class="text-foreground hover:text-muted-foreground text-xs tracking-widest uppercase transition-colors sm:text-sm"
+        >
+          {config.site.aka}
+        </a>
+
+        <span class="text-border select-none">/</span>
+
+        <ul class="flex items-center gap-3 sm:gap-6">
+          {
+            navItems.map(({ href, key }) => {
+              const nav = t.nav[key];
+              return (
+                <li>
+                  <a
+                    href={href}
+                    class="text-subtle-foreground hover:text-foreground text-xs tracking-wider uppercase transition-colors sm:text-sm sm:tracking-widest"
+                  >
+                    <span class="sm:hidden">{nav.short}</span>
+                    <span class="hidden sm:inline">{nav.full}</span>
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+
+      <ThemeIcon />
+    </nav>
+  </div>
+</header>
